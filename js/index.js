@@ -10,7 +10,28 @@ function productQuantity(inIncreasing,product,price){
     productQuantityNum.value = productQuantity;
     const productPrice = document.getElementById(product + '-price');
     productPrice.innerText = productQuantity * price;
+    // Price calculate function
+    calculatePrice();
 
+}
+// Calculate total price for product
+function getInputValue(product){
+    const quantityInput = document.getElementById(product + '-number');
+    const quantityNum = parseInt(quantityInput.value);
+    return quantityNum;
+}
+function calculatePrice(){
+    const phoneTotalPrice = getInputValue("phone") * 1219;
+    const caseTotalPrice = getInputValue("case") * 59;
+    const subTotal = caseTotalPrice + phoneTotalPrice;
+    const totalTax = subTotal/100 * 5; 
+    const totalProducrPrice = subTotal + totalTax; 
+    const productSubTotal = document.getElementById("sub-total");
+    productSubTotal.innerText = subTotal;
+    const productTotalTax = document.getElementById("total-tax");
+    productTotalTax.innerText = totalTax.toFixed(2);
+    const totalPrice = document.getElementById("total-price");
+    totalPrice.innerText = totalProducrPrice.toFixed(2);
 }
 // Phone area
 document.getElementById('phone-plus').addEventListener('click', function(){
